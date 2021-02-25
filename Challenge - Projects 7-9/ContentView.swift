@@ -8,38 +8,25 @@
 import SwiftUI
 
 struct User: Codable, Identifiable {
-    var id: UUID
-    var name: String
-    var age: Int
-    var friends: [Friend]
+    let id: UUID
+    let name: String
+    let age: Int
+    let friends: [Friend]
     
-    static var example: User = User(id: UUID(), name: "Talita", age: 27, friends: [Friend.example])
+//    static var example: User = User(id: UUID(), name: "Talita", age: 27, friends: [Friend.example])
 }
 struct Friend: Codable, Identifiable {
-    var id: UUID
-    var name: String
+    let id: UUID
+    let name: String
     
-    static var example: Friend = Friend(id: UUID(), name: "Tiago")
+//    static var example: Friend = Friend(id: UUID(), name: "Tiago")
 }
 
-//struct Response: Codable {
-//    var user : [User]
-//    var friend: [Friend]
-//}
-//
-//struct User: Codable {
-//    var id: String
-//    var name: String
-//    var company: String
-//}
-//struct  Friend: Codable{
-//    var age: String
-//    var about: String
-//}
-
 struct ContentView: View {
-    @State private var user = [User]()
-    @State private var friend = [Friend]()
+    @ObservedObject var user = User()
+        @ObservedObject var friend = Friend()
+        @State private var showingNames = true
+    
     
     var body: some View {
         NavigationView{
@@ -47,13 +34,29 @@ struct ContentView: View {
                 VStack(alignment: .leading) {
                     Text(item.name)
                         .font(.headline)
-//                    Text(item.name)
+                    Text(self.friend.description)
+                        .padding()
+                    
+                    Text(self.user.description)
+                        .padding()
+                    
+                    Button(action: {
+                                       self.showingNames.toggle()
+                                   }, label: {
+                                    Text(self.friend.description)
+                                   })
                 }
-            }
-            .onAppear(perform: loadData)
-        }
-        .navigationTitle("Challenge")
-    }
+
+                Spacer()
+//            .padding(.horizontal)
+        .buttonStyle(PlainButtonStyle())
+    
+    Spacer(minLength: 25)
+}
+}
+.onAppear(perform: loadData)
+.navigationTitle("Challenge")
+}
     func loadData(){
         guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else{
             print("Invalid URL")
@@ -70,7 +73,7 @@ struct ContentView: View {
                     }
                 } catch {
                     print("decodeError")
-                    self.user = [User.example]
+//                    self.user = [User.example]
                     return
                 }
 //                if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
@@ -86,3 +89,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+

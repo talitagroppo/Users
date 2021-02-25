@@ -11,6 +11,8 @@
 		D76F118725E68BB50089F232 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F118625E68BB50089F232 /* ContentView.swift */; };
 		D76F118925E68BBC0089F232 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76F118825E68BBC0089F232 /* Assets.xcassets */; };
 		D76F118C25E68BBC0089F232 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D76F118B25E68BBC0089F232 /* Preview Assets.xcassets */; };
+		D76F11AB25E80E6E0089F232 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76F11AA25E80E6E0089F232 /* Bundle.swift */; };
+		D76F11BD25E81BBF0089F232 /* File.exp in Sources */ = {isa = PBXBuildFile; fileRef = D76F11B625E81A4C0089F232 /* File.exp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		D76F118825E68BBC0089F232 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D76F118B25E68BBC0089F232 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D76F118D25E68BBC0089F232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D76F11AA25E80E6E0089F232 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Bundle.swift; path = "Challenge - Projects 7-9/Bundle.swift"; sourceTree = SOURCE_ROOT; };
+		D76F11B625E81A4C0089F232 /* File.exp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.exports; path = File.exp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				D76F118425E68BB50089F232 /* Challenge___Projects_7_9App.swift */,
+				D76F11AA25E80E6E0089F232 /* Bundle.swift */,
+				D76F11B625E81A4C0089F232 /* File.exp */,
 				D76F118625E68BB50089F232 /* ContentView.swift */,
 				D76F118825E68BBC0089F232 /* Assets.xcassets */,
 				D76F118D25E68BBC0089F232 /* Info.plist */,
@@ -140,6 +146,8 @@
 			files = (
 				D76F118725E68BB50089F232 /* ContentView.swift in Sources */,
 				D76F118525E68BB50089F232 /* Challenge___Projects_7_9App.swift in Sources */,
+				D76F11AB25E80E6E0089F232 /* Bundle.swift in Sources */,
+				D76F11BD25E81BBF0089F232 /* File.exp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
