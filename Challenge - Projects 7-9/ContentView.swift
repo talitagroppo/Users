@@ -8,57 +8,54 @@
 import SwiftUI
 
 struct User: Codable, Identifiable {
+    struct Friend: Codable {
+        let id: UUID
+        let name: String
+       static var example: Friend = Friend(id: UUID(), name: "Tiago")
+    }
+
     let id: UUID
     let name: String
     let age: Int
-    let friends: [Friend]
+    let friends: Friend
     
-//    static var example: User = User(id: UUID(), name: "Talita", age: 27, friends: [Friend.example])
-}
-struct Friend: Codable, Identifiable {
-    let id: UUID
-    let name: String
-    
-//    static var example: Friend = Friend(id: UUID(), name: "Tiago")
+  static var example: User = User(id: UUID(), name: "Talita", age: 27, friends: Friend.example)
 }
 
 struct ContentView: View {
-    @ObservedObject var user = User()
-        @ObservedObject var friend = Friend()
-        @State private var showingNames = true
-    
+    @State private var user = [User]()
     
     var body: some View {
         NavigationView{
             List(user) { item in
                 VStack(alignment: .leading) {
                     Text(item.name)
-                        .font(.headline)
-                    Text(self.friend.description)
-                        .padding()
-                    
-                    Text(self.user.description)
-                        .padding()
-                    
-                    Button(action: {
-                                       self.showingNames.toggle()
-                                   }, label: {
-                                    Text(self.friend.description)
-                                   })
+                    .font(.title)
+                Text("Friends - Name: \(item.friends.name)")
+                    Text("ID: \(item.friends.id)")
                 }
-
-                Spacer()
-//            .padding(.horizontal)
-        .buttonStyle(PlainButtonStyle())
+//                Spacer()
+//                Button("Information") {
+//                    let encoder = JSONEncoder()
+//
+//                    if let data = try? JSONEncoder().encode(self.user) {
+//                        UserDefaults.standard.set(data, forKey: "https://www.hackingwithswift.com/samples/friendface.json")
+//                        print ("\(item.friends)")
+//                    }else{
+//                        print("Error")
+//                    }
+                }
+            .padding(.horizontal)
+//       .buttonStyle(PlainButtonStyle())
+        .navigationBarTitle("Challenge")
     
-    Spacer(minLength: 25)
-}
-}
-.onAppear(perform: loadData)
-.navigationTitle("Challenge")
+//   Spacer(minLength: 25)
+    .onAppear(perform: loadData)
+        }
 }
     func loadData(){
-        guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else{
+        
+        guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json")else{
             print("Invalid URL")
             return
         }
@@ -69,20 +66,22 @@ struct ContentView: View {
                     let decodedResponse = try JSONDecoder().decode([User].self, from: data)
                     print(decodedResponse)
                     DispatchQueue.main.async {
-                        self.user = decodedResponse
+//                        self.loadData()
+                        return
                     }
                 } catch {
                     print("decodeError")
-//                    self.user = [User.example]
+                   self.user = [User.example]
                     return
                 }
-//                if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
+                
+//                if let decodedResponse = try? JSONDecoder().decode(User.self, from: data) {
 //
 //                }
             }
             print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
         }.resume()
-    }
+        }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
